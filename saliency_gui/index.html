@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <style>
+      img{
+          -khtml-user-select: none;
+          -o-user-select: none;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          user-select: none;
+      }
+    </style>
+    <link rel="stylesheet" href="assets/css/commons.css" />
+    <link rel="stylesheet" href="assets/css/example-commons.css" />
+    <link rel="stylesheet" href="assets/css/prism.css" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-12880923-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="demo-wrapper">
+        <div class="heatmap" id="canvas">
+        </div>
+        <div id="index">
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="demo-controls">
+      <button class="save-data btn">save data</button>
+      <br style="clear:both" />
+    </div>
+    <div class="demo-controls">
+      <button class="prev-image btn">prev image</button>
+      <br style="clear:both" />
+    </div>
+    <div class="demo-controls">
+      <button class="next-image btn">next image</button>
+      <br style="clear:both" />
+    </div>
+    <!-- <h1>heatmap.js Mousemove Example</h1>
+      <div id="all-examples-info">
+          <strong style="font-weight:bold;line-height:200%;font-size:18px;">Looking for more examples?</strong> <br />Check out the full <a href="http://www.patrick-wied.at/static/heatmapjs/examples.html?utm_source=gh_local" target="_blank">list of all heatmap.js examples</a> with more pointers &amp; inline documentation.
+        </div> -->
+    <script src="assets/css/heatmap.min.js"></script>
+    <script src="assets/css/filesaver.js"></script>
+    <script>
+      var heatmapInstance;
+      var idx = -1;
+      window.onload = function() {
+        heatmapInstance = h337.create({
+          container: document.querySelector('.heatmap'),
+          radius: 25
+        });
+        document.querySelector('.demo-wrapper').onclick = function(ev) {
+          heatmapInstance.addData({
+            x: ev.layerX,
+            y: ev.layerY,
+            value: 1
+          });
+        };
+        document.querySelector('.save-data').onclick = function() {
+          var data_json = heatmapInstance.getData();
+          var json_string = JSON.stringify(data_json);
+          var blob = new Blob([json_string],
+                { type: "text/plain;charset=utf-8" });
+          formatted_int = ("000" + idx).slice(-3)
+          saveAs(blob, `annotations_${formatted_int}.txt`);
+        };
+        document.querySelector('.next-image').onclick = function() {
+          idx += 1
+          formatted_int = ("000" + idx).slice(-3)
+          var image_file = `frame_${formatted_int}.png`;
+          var html = [
+            // '<div class="tmp">',
+            '<img src="' + image_file + '" width=400>',
+            // '</div>'
+          ].join('\n');
+
+          document.getElementById("canvas").innerHTML = html;
+          document.getElementById("index").innerHTML = formatted_int;
+          heatmapInstance = h337.create({
+            container: document.querySelector('.heatmap'),
+            radius: 25
+          });
+        }
+        document.querySelector('.prev-image').onclick = function() {
+          idx -= 1
+          formatted_int = ("000" + idx).slice(-3)
+          var image_file = `frame_${formatted_int}.png`;
+          var html = [
+            // '<div class="tmp">',
+            '<img src="' + image_file + '" width=400>',
+            // '</div>'
+          ].join('\n');
+
+          document.getElementById("canvas").innerHTML = html;
+          document.getElementById("index").innerHTML = formatted_int;
+          heatmapInstance = h337.create({
+            container: document.querySelector('.heatmap'),
+            radius: 25
+          });
+        }
+      };
+    </script>
+  </body>
+</html>
