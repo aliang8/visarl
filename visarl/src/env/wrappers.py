@@ -6,7 +6,8 @@ import torch
 import torch.nn.functional as F
 import torchvision.transforms.functional as TF
 from gym.wrappers import TimeLimit
-from src.env.robot import registration
+
+# from src.env.robot import registration
 import util.general_utils as utils
 from collections import deque
 from mujoco_py import modder

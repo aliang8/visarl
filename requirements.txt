@@ -19,8 +19,15 @@ torchmetrics
 wandb
 gym==0.20.0
 timm
-augmentations
+augmentations   
 h5py
 ml_collections
 moviepy
 pandas
+tqdm
+opencv-python
+matplotlib
+torchmetrics
+torchshow
+h5py
+ipdb

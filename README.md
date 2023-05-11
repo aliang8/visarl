@@ -8,6 +8,8 @@ Create a new conda environment: `conda create --prefix ./venv python=3.9`
 
 Install packages: `pip3 install requirements.txt`
 
+Install ViSaRL as a package: `pip3 install -e .`
+
 Download and install Metaworld: git clone https://github.com/rlworkgroup/metaworld.git
 
 Download and install MultiMAE
@@ -51,12 +53,12 @@ b. Annotate the frames with the UI (index.html) by clicking on salient regions.
 ## 3.Train PiCANet saliency predictor
 
 ```
-CUDA_VISIBLE_DEVICES=0 python3 train_picanet.py \
+CUDA_VISIBLE_DEVICES=0 python3 -m train_picanet \
     --lr 3e-4 \
     --num_epochs 1000 \
     --mode train \
     --pred_type fixation \
-    --annotation_dir annotations \
+    --annotation_dir visarl/annotations \
     --model_suffix _picanet \
     --task drawer-open-v2 \
     --batch_size 8 \

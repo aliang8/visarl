@@ -1,8 +1,7 @@
 import sys
-import util.constants as constants
+import visarl.util.constants as constants
 
-sys.path.append(constants.ROOT)
-sys.path.append(constants.SRC)
+sys.path.append(constants.ROOT_DIR)
 sys.path.append(constants.MMAE)
 
 import torchvision.transforms.functional as TF
