@@ -1,6 +1,6 @@
 # ViSARL: Visual Saliency Reinforcement Learning
 
-Codebase to replicate the results for https://sites.google.com/view/visarl. 
+Codebase to replicate the results for [https://sites.google.com/view/visarl](https://liralab.usc.edu/visarl/). 
 
 # Instructions
 
